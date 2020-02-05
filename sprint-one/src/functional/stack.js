@@ -17,6 +17,7 @@ var Stack = function() {
       if (storage[key] === (counter - 1)) {
         temp[key] = storage[key];
         delete storage[key];
+        counter -= 1;
       }
     }
     for (var keys in temp) {
@@ -38,7 +39,3 @@ var Stack = function() {
 var stack = Stack();
 
 // stack returns somInstance, an object, its keys are (push, pop, size), the values are functions attched to the keys
-stack.push('a');
-stack.push('b');
-stack.push('c');
-stack.pop();
