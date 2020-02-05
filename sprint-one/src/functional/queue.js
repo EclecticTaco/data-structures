@@ -17,3 +17,5 @@ var Queue = function() {
 
   return someInstance;
 };
+// Queue returns an Object (someInstance)
+// that object has keys which are (enqeue, deqeue, size) the values associated with those keys re the function
