@@ -15,12 +15,12 @@ var Stack = function() {
     var temp = {};
     for (var key in storage) {
       if (storage[key] === (counter - 1)) {
-        delete storage[key];
         temp[key] = storage[key];
+        delete storage[key];
       }
     }
     for (var keys in temp) {
-      return keys
+      return keys;
     }
 
   };
@@ -35,5 +35,10 @@ var Stack = function() {
 
   return someInstance;
 };
+var stack = Stack();
 
 // stack returns somInstance, an object, its keys are (push, pop, size), the values are functions attched to the keys
+stack.push('a');
+stack.push('b');
+stack.push('c');
+stack.pop();
