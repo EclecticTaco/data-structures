@@ -7,22 +7,15 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
-    storage[value] = counter;
+    storage[counter] = value;
     counter += 1;
   };
 
   someInstance.pop = function() {
-    var temp = {};
-    for (var key in storage) {
-      if (storage[key] === (counter - 1)) {
-        temp[key] = storage[key];
-        delete storage[key];
-        counter -= 1;
-      }
-    }
-    for (var keys in temp) {
-      return keys;
-    }
+    var temp = storage[counter - 1];
+    delete storage[counter - 1];
+    counter -= 1;
+    return temp;
 
   };
 
