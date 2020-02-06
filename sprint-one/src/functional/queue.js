@@ -1,6 +1,5 @@
 var Queue = function() {
   var someInstance = {};
-
   // Use an object with numeric keys to store values
   var storage = {};
   var counterTop = 0;
@@ -19,9 +18,6 @@ var Queue = function() {
     delete storage[counterBottom];
     counterBottom += 1;
     return temp;
-    // for (var keys in temp) {
-    //   return keys;
-    // }
   };
 
   someInstance.size = function() {
