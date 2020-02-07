@@ -14,20 +14,18 @@ var LinkedList = function() {
       this[value] = Node(value); // if list not empty run
       this.tail = this[value]; // set tail to this new node
       var before = this.previous;
-      this[before].next = value; // set previous node's next value to newly added node
-      this[before] = value; // set previous current (over writing old previous)
+      this[before].next = this[value]; // set previous node's next value to newly added node
+      this[before] = this[value]; // set previous current (over writing old previous)
+      this.previous = this[value];
     }
-    console.log(this.head.next);
   };
 
   list.removeHead = function() {
-    var oldHeader = this.head;
-    var oldNext = this[oldHeader].next;
-    // var secondNode = this[oldHeader].next;
-    // this.head = this[secondNode];
+    var oldHeader = this.head.value;
+    var oldHeaderObj = this.head;
+    this.head = oldHeaderObj.next;
 
-
-
+    return oldHeader;
     // return oldHeader;
   };
 
