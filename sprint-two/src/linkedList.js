@@ -30,6 +30,12 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    for (var key in this) {
+      if (this[key].value === target) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return list;
