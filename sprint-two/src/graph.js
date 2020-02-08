@@ -99,16 +99,14 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (var i = 0; i < this.graphs.length; i++) {
+    var ele = this.graphs[i];
+
+    cb(ele.value);
+  }
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
 
-var graph = new Graph();
-graph.addNode(4);
-graph.addNode(5);
-graph.addEdge(5, 4);
-graph.hasEdge(4, 5);
-graph.removeEdge(5, 4);
-graph.hasEdge(4, 5);
