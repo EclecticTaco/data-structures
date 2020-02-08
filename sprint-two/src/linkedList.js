@@ -27,12 +27,23 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    for (var key in this) {
-      if (this[key].value === target) {
+    var current = this.head;
+
+    var count = 0;
+    var inner = function (node) {
+      if (node.value === target) {
         return true;
       }
-    }
-    return false;
+      if (node.next === null) {
+        return false;
+      } else {
+        return inner(node.next);
+      }
+
+
+    };
+    var result = inner(current);
+    return result;
   };
 
   return list;
@@ -50,3 +61,11 @@ var Node = function(value) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+var list = LinkedList();
+list.addToTail(4);
+list.addToTail(5);
+console.log(list.contains(4));
+console.log(list.contains(5));
+console.log(list.contains(6));
+
