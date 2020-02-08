@@ -2,21 +2,18 @@ var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
-  list.previous = null;
 
   list.addToTail = function(value) {
-    if (this.tail === null) { // if list is empty run
-      this[value] = Node(value); // create new node with pass in value
-      this.head = this[value]; // link head points to above node
-      this.tail = this[value]; // link tail points to above node
-      this.previous = value; // sets previous to current value
+    if (this.tail === null) {
+      var node = Node(value);
+      this.head = node; // link head points to above node
+      this.tail = node; // link tail points to above node
     } else {
-      this[value] = Node(value); // if list not empty run
-      this.tail = this[value]; // set tail to this new node
-      var before = this.previous;
-      this[before].next = this[value]; // set previous node's next value to newly added node
-      this[before] = this[value]; // set previous current (over writing old previous)
-      this.previous = this[value];
+      // if list not empty run
+      var newNode = Node(value);
+      var temp = this.tail;
+      this.tail = newNode; // set tail to this new node
+      temp.next = newNode; // set previous node's next value to newly added node
     }
   };
 
