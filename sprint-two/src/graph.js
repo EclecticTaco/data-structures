@@ -26,11 +26,21 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
+  var removeNode = undefined;
   for (var i = 0; i < this.graphs.length; i += 1) {
     if (this.graphs[i].value === node) {
+      removeNode = this.graphs[i];
       this.graphs.splice(i, 1);
     }
   }
+  for (var x = 0; x < this.graphs.length; x += 1) {
+    for (var j = 0; j < this.graphs[x].storage.length; j += 1) {
+      if (this.graphs[x].storage[j].value === node) {
+        this.graphs[x].storage.splice(j, 1);
+      }
+    }
+  }
+
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -65,6 +75,26 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  var from = undefined;
+  var to = undefined;
+  for (var i = 0; i < this.graphs.length; i++) {
+    if (this.graphs[i].value === fromNode) {
+      from = this.graphs[i];
+      for (var j = 0; j < from.storage.length; j++) {
+        if (from.storage[j].value === toNode) {
+          from.storage.splice(j, 1);
+        }
+      }
+    }
+    if (this.graphs[i].value === toNode) {
+      to = this.graphs[i];
+      for (var x = 0; x < to.storage.length; x++) {
+        if (to.storage[x].value === fromNode) {
+          to.storage.splice(x, 1);
+        }
+      }
+    }
+  }
 };
 
 // Pass in a callback which will be executed on each node of the graph.
@@ -75,11 +105,10 @@ Graph.prototype.forEachNode = function(cb) {
  * Complexity: What is the time complexity of the above functions?
  */
 
-var bob = new Graph();
-bob.addNode(2);
-bob.addNode(1);
-bob.addNode(3);
-bob.addEdge(3, 2);
-bob.hasEdge(3, 2);
-bob.hasEdge(3, 1);
-
+var graph = new Graph();
+graph.addNode(4);
+graph.addNode(5);
+graph.addEdge(5, 4);
+graph.hasEdge(4, 5);
+graph.removeEdge(5, 4);
+graph.hasEdge(4, 5);
