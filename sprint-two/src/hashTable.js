@@ -8,11 +8,14 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var topLevelStorage = this._storage.get(index);
-  if (topLevelStorage[index] === undefined) {
-    _.set(index, [])
-  } else {
-    // use each and pass in addTuples call back
+  debugger;
+  var storageArr = this._storage.get(index);
+  if (storageArr === undefined) {
+    this._storage.set(index, []);
+  }
+  if (storageArr !== undefined) {
+    debugger;
+    this._storage.each(addTuples);
   }
 
 };
@@ -34,10 +37,16 @@ HashTable.prototype.remove = function(k) {
 
 
 addTuples = function (element, idx, storage) {
-  if (storage[idx] !== undefined) {
+  // use index to access a bucket in storage
+  storage[index].push([k, v]);
+  // push tuple into storage[index]
+};
 
-  }
-}
+// limitedArray.each = function(callback) {
+//   for (var i = 0; i < storage.length; i++) {
+//     callback(storage[i], i, storage);
+//   }
+// };
 /*
  * Complexity: What is the time complexity of the above functions?
  */
