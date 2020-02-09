@@ -7,25 +7,36 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  let index = getIndexBelowMaxForKey(k, this._limit);
-  var storageArr = this._storage.get(index);
-  var addTuples = function (element, idx, storage) {
-    // use index to access a bucket in storage
-    debugger;
-    storage[index].push([k, v]); // unwanted behavior; pushes tuple into 3 times instead of just once,
-    //  each iterates through storage.length, why 3?
-    // push tuple into storage[index]
-  };
-  // limitedArray.each = function(callback) {
-  //   for (var i = 0; i < storage.length; i++) {
-  //     callback(storage[i], i, storage);
-  //   }
-  // };
-  if (storageArr === undefined) {
-    this._storage.set(index, []);
-    this._storage.each(addTuples);
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  // retrieve bucket
+  var bucket = this._storage.get(index);
+  // create bucket if !bucket
+  if (!bucket) {
+    bucket = [];
+    this._storage.set(index, bucket);
   }
+  //flag variable, hasKey?
+  var hasKey;
 
+  // iterate bucket
+  for (var i = 0; i < bucket.length; i += 1) {
+    var tuple = bucket[i];
+    if (bucket[i][0] === k) {
+      hasKey = true;
+      bucket[i][1] = v;
+      break;
+    }
+    hasKey = false;
+  }
+  // create var to reference tuple
+  // check if key exists
+  // if key, update value
+  // break out of loop
+  if (!hasKey) {
+    bucket.push([k, v]);
+  }
+  // if !hasKey?
+  // push tuple into bucket
 };
 
 
