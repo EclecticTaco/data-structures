@@ -53,6 +53,12 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this._storage.get(index);
+  for (var i = 0; i < bucket.length; i += 1) {
+    if (bucket[i][0] === k) {
+      bucket.splice(i, 1);
+    }
+  }
 
 };
 
