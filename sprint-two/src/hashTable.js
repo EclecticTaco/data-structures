@@ -8,7 +8,12 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(index, [k, v]);
+  var topLevelStorage = this._storage.get(index);
+  if (topLevelStorage[index] === undefined) {
+    _.set(index, [])
+  } else {
+    // use each and pass in addTuples call back
+  }
 
 };
 
@@ -24,12 +29,15 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+
 };
 
 
+addTuples = function (element, idx, storage) {
+  if (storage[idx] !== undefined) {
 
+  }
+}
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
