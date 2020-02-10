@@ -18,7 +18,7 @@ var binaryTreeMethods = {
       return 'first';
     }
 
-    if (this.left !== undefined && value < this.right.value) {
+    if (this.left !== undefined && value < this.right.value) { // if this.right is undefined: error, needs new check
       this.left.insert(value);
       return 'second';
     }
