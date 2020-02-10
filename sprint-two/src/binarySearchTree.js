@@ -9,7 +9,7 @@ var BinarySearchTree = function(value) {
 
 var binaryTreeMethods = {
   insert: function(value) {
-    debugger;
+    // debugger;
     if (this.left === undefined && value < this.value) {
       this.left = BinarySearchTree(value);
       return 'first';
@@ -18,12 +18,12 @@ var binaryTreeMethods = {
       return 'first';
     }
 
-    if (this.left !== undefined && value < this.right.value) { // if this.right is undefined: error, needs new check
+    if (this.left !== undefined && value < this.value) { // if this.right is undefined: error, needs new check
       this.left.insert(value);
       return 'second';
     }
 
-    if (this.right !== undefined && value > this.left.value) {
+    if (this.right !== undefined && value > this.value) {
       this.right.insert(value);
       return 'third';
     }
@@ -32,17 +32,7 @@ var binaryTreeMethods = {
   },
 
   contains: function(value) {
-    if (this.value === value) {
-      return true;
-    }
-    var rightDiff = this.right.value - value;
-    var leftDiff = this.left.value - value;
-    if (leftDiff < rightDiff) {
-      this.contains(this.left);
-    } else {
-      this.contains(this.right);
-    }
-    return false;
+
   },
 
   depthFirstLog: function(cb) {
